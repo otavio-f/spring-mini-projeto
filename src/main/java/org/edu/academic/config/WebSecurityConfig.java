@@ -51,11 +51,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 // Não cheque essas requisições
-                .authorizeRequests().antMatchers("/authenticate", "/signup", "/api/v1/alunos", "/api/v1/projetos", "/api/v1/professores", "/v2/api-docs", "/configuration/ui",
-                        "/swagger-resources/**", "/configuration/**", "/swagger-ui.html", "/webjars/**")
-                .permitAll().
+                .authorizeRequests()
+                //.antMatchers("/api/v1/projetos").hasRole("ADMIN")
+                .antMatchers("/authenticate", "/alunos", "/v2/api-docs", "/configuration/ui",
+                        "/swagger-resources/**", "/configuration/**", "/swagger-ui.html", "/webjars/**").permitAll()
+                //.antMatchers("/authenticate", "/signup", "/api/v1/alunos", "/api/v1/projetos", "/api/v1/professores", "/v2/api-docs", "/configuration/ui",
+                //        "/swagger-resources/**", "/configuration/**", "/swagger-ui.html", "/webjars/**").permitAll()
                 // Qualquer outra requisição deve ser checada
-                anyRequest().authenticated().and().exceptionHandling()
+                .anyRequest().authenticated().and().exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
