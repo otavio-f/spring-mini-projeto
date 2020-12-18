@@ -3,6 +3,7 @@ package org.edu.academic.controller;
 import org.edu.academic.model.Projeto;
 import org.edu.academic.service.ProjetoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,7 @@ public class ProjetoController {
     // POST endpoints
 
     @ApiOperation(value = "Insere um projeto Banco de Dados")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public Projeto postProjeto(@RequestBody Projeto projeto) throws Exception {
         return this.projetoService.postProjeto(projeto);
@@ -46,6 +48,7 @@ public class ProjetoController {
     // PUT endpoints
 
     @ApiOperation(value = "Atualiza os dados de um projeto no Banco de Dados")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     public Projeto putProjeto(@PathVariable String id, @RequestBody Projeto projeto) throws Exception {
         projeto.setId(id);
@@ -55,6 +58,7 @@ public class ProjetoController {
     // DELETE endpoints
 
     @ApiOperation(value = "Deleta um projeto do Banco de Dados")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteProjeto(@PathVariable String id) {
         this.projetoService.deleteProjeto(id);

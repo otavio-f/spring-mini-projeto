@@ -13,4 +13,8 @@ public class UsuarioDTO {
     private String id;
     private String username;
     private String password;
+    
+	public String getUsername() {
+		return this.username;
+	}
 }

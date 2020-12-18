@@ -21,6 +21,7 @@ import lombok.Setter;
 @Data
 @Document(collection = "projetos")
 public class Projeto {
+	
     @Id
     private String id;
 

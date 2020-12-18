@@ -1,6 +1,9 @@
 package org.edu.academic.controller;
 
+import java.util.HashSet;
+
 import org.edu.academic.dto.UsuarioDTO;
+import org.edu.academic.model.Role;
 import org.edu.academic.model.Usuario;
 import org.edu.academic.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +33,7 @@ public class UsuarioController {
                 .ok(usuarioRepository.save(
                     new Usuario(usuario.getId(), 
                     usuario.getUsername(), 
-                    encoder.encode(usuario.getPassword()))
+                    encoder.encode(usuario.getPassword()), new HashSet<Role>())
                     )
                 );
         } catch (Exception e) {
