@@ -1,4 +1,4 @@
-# Repositório de Projetos - Spring Boot application
+# Repositório de Projetos - Spring Boot Application
 
 - Criar, deletar, atualizar e receber informações de:
     - Alunos
@@ -6,6 +6,7 @@
     - Projetos
 - Spring Security (Jwt)
 - Documentação com Swagger (/swagger-ui.html)
-- Banco de dados remoto MongoDB
+- Banco de dados remoto (*Atlas: MongoDB*)
+
 
 Demo: Heroku
